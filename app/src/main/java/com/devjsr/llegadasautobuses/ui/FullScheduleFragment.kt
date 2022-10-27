@@ -16,6 +16,7 @@ import com.devjsr.llegadasautobuses.ui.viewmodels.BusScheduleViewModelFactory
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class FullScheduleFragment : Fragment() {
@@ -53,9 +54,9 @@ class FullScheduleFragment : Fragment() {
         }
         recyclerView.adapter = busStopAdapter
 
-        //Actualizar una vista de lista
+        //Actualizar una vista de lista automaticamente al cambiar un valor
         lifecycle.coroutineScope.launch {
-            viewModel.fullSchedule().collect() {
+            viewModel.fullSchedule().collect {
                 busStopAdapter.submitList(it)
             }
         }

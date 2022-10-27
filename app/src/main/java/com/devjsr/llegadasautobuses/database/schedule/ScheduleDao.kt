@@ -2,6 +2,7 @@ package com.devjsr.llegadasautobuses.database.schedule
 
 import androidx.room.Dao
 import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 @Dao
