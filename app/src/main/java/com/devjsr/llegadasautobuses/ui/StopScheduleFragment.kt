@@ -12,9 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devjsr.llegadasautobuses.databinding.FragmentStopScheduleBinding
 import com.devjsr.llegadasautobuses.ui.viewmodels.BusScheduleViewModel
 import com.devjsr.llegadasautobuses.ui.viewmodels.BusScheduleViewModelFactory
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
@@ -48,7 +45,7 @@ class StopScheduleFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentStopScheduleBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -59,11 +56,11 @@ class StopScheduleFragment : Fragment() {
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val busStopAdapter = BusStopAdapter ({})
+        val busStopAdapter = BusStopAdapter {}
         recyclerView.adapter = busStopAdapter
 
         lifecycle.coroutineScope.launch {
-            viewModel.scheduleForStopName(stopName).collect() {
+            viewModel.scheduleForStopName(stopName).collect {
                 busStopAdapter.submitList(it)
             }
         }
