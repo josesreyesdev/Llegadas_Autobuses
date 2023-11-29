@@ -13,10 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devjsr.llegadasautobuses.databinding.FragmentFullScheduleBinding
 import com.devjsr.llegadasautobuses.ui.viewmodels.BusScheduleViewModel
 import com.devjsr.llegadasautobuses.ui.viewmodels.BusScheduleViewModelFactory
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class FullScheduleFragment : Fragment() {
@@ -35,7 +31,7 @@ class FullScheduleFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentFullScheduleBinding.inflate(inflater, container, false)
         return binding.root
     }
